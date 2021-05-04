@@ -7,4 +7,8 @@ describe("Gilded Rose", function() {
     expect(items[0].name).toEqual("foo");
   });
 
+  it('should behave...', () => {
+    
+  });
+
 });
