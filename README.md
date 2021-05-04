@@ -43,12 +43,14 @@ HINT: Test first FTW!
 
 - At the end of each day our system lowers both values for every item (sellIn and quality)
 - Once the sell by date has passed, Quality degrades twice as fast
-- The Quality of an item is never negative (but sellIn can be)
-- The Quality of an item is never more than 50 -> (in texttest_fixture.js Sulfuras has quality of 80)
+- The Quality of an item is never negative (works - but sellIn can be, which does not seem to be useful but fits specs?)
+- The Quality of an item is never more than 50 -> (does not work - in texttest_fixture.js Sulfuras has quality of 80)
 
 #### Special items
 
-- “Aged Brie” actually increases in Quality the older it gets
-- “Sulfuras”, being a legendary item, never has to be sold or decreases in Quality (Implies any item with the name Sulfuras?)
-- “Backstage passes” Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but Quality drops to 0 after the concert (does not work currently)
+- “Aged Brie” actually increases in Quality the older it gets (does not work)
+- “Sulfuras”, being a legendary item, never has to be sold or decreases in Quality (works - Implies any item with the name Sulfuras?)
+- “Backstage passes” Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but Quality drops to 0 after the concert 
+  - Quality does drop to 0 the day after sellIn hits 0
+  - Quality fits the description above, and does not exceed 50.
 - “Conjured” items degrade in Quality twice as fast as normal items (does not work)
