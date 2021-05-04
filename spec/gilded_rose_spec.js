@@ -1,6 +1,7 @@
 var {Shop, Item} = require('../src/gilded_rose.js');
 describe("Gilded Rose", function() {
 
+  // Original test, fixed
   it("should foo", function() {
     const gildedRose = new Shop([ new Item("foo", 0, 0) ]);
     const items = gildedRose.updateQuality();
@@ -41,6 +42,42 @@ describe("Gilded Rose", function() {
     var gildedRose = new Shop([ new Item("Aged Brie", 0, 60)]);
     var items = gildedRose.updateQuality();
     expect(items[0].quality).toEqual(50);
+  });
+
+  // Currently increases by 1 if sellIn >=0, otherwise increases by 2 each day
+  describe('Special Items', () => {
+    xit('Aged Brie increases in quality ', () => {
+      
+    });
+
+    // May change if value > 50 && items with quality > 50 get capped to 50.
+    it('Sulfuras, Hand of Ragnaros: never decreases in quality', () => {
+      for(var value = 1; value < 51; value++) {
+      var gildedRose = new Shop([ new Item("Sulfuras, Hand of Ragnaros", 0, value)]);
+      var items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(value);
+      }
+    });
+
+    it('Backstage passes: Quality increases by 2 when there are 10 days, but more than 0', () => {
+      var gildedRose = new Shop([ new Item("Backstage passes to a TAFKAL80ETC concert", 10, 10)]);
+      var items = gildedRose.updateQuality();
+      expect(items[0].sellIn).toEqual(9);
+      expect(items[0].quality).toEqual(12);
+    });
+
+    it('Backstage passes: Quality increases by 3 when there are 5 days or less, but more than 0', () => {
+      var gildedRose = new Shop([ new Item("Backstage passes to a TAFKAL80ETC concert", 5, 10)]);
+      var items = gildedRose.updateQuality();
+      expect(items[0].sellIn).toEqual(4);
+      expect(items[0].quality).toEqual(13);
+    });
+
+    it('Backstage passes: Quality drops to 0 if sellin < 0', () => {
+      var gildedRose = new Shop([ new Item("Backstage passes to a TAFKAL80ETC concert", 0, 10)]);
+      var items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(0);
+    });
   });
 
 });
