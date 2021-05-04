@@ -21,4 +21,10 @@ describe("Gilded Rose", function() {
     expect(items[0].sellIn).toEqual(-1);
   });
 
+  it('Quality of an item does not degrade past 0', () => {
+    var gildedRose = new Shop([ new Item("Sword", 0, 1)]);
+    var items = gildedRose.updateQuality();
+    expect(items[0].quality).toEqual(0);
+  });
+
 });
