@@ -54,3 +54,9 @@ HINT: Test first FTW!
   - Quality does drop to 0 the day after sellIn hits 0
   - Quality fits the description above, and does not exceed 50.
 - “Conjured” items degrade in Quality twice as fast as normal items (does not work)
+
+## implementation
+
+- First broke down the specs and manually tested using texttest_fixture.js with different days
+- Checked which specs are implemented and which are currently not working
+- Decided it's better to write tests first, then refactor -> more confidence in refactoring is done correctly.
