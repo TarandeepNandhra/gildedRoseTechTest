@@ -27,4 +27,20 @@ describe("Gilded Rose", function() {
     expect(items[0].quality).toEqual(0);
   });
 
+  it('Quality of an item is never more than 50', () => {
+    var gildedRose = new Shop([ new Item("Aged Brie", 0, 48)]);
+    for(var _ = 0; _ < 10; _++) {
+      gildedRose.updateQuality();
+    }
+    var items = gildedRose.updateQuality();
+    expect(items[0].quality).toEqual(50);
+  });
+
+  // If Item is initialised over 50, stays above 50, which violates spec. 
+  xit('Quality of Item is above 50', () => {
+    var gildedRose = new Shop([ new Item("Aged Brie", 0, 60)]);
+    var items = gildedRose.updateQuality();
+    expect(items[0].quality).toEqual(50);
+  });
+
 });
