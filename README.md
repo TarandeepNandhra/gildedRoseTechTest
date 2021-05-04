@@ -38,12 +38,14 @@ HINT: Test first FTW!
 
 - Each Item has name, sellIn and quality
 - Shop contains an array of items and an updateQuality method which updates quality of each item for each day in shop.
+
 General conditions
 -------
 - At the end of each day our system lowers both values for every item (sellIn and quality)
 - Once the sell by date has passed, Quality degrades twice as fast
 - The Quality of an item is never negative (but sellIn can be)
 - The Quality of an item is never more than 50 -> (in texttest_fixture.js Sulfuras has quality of 80)
+
 Special items
 ---------
 - “Aged Brie” actually increases in Quality the older it gets
