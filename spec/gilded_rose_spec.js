@@ -73,10 +73,22 @@ describe("Gilded Rose", function() {
       expect(items[0].quality).toEqual(13);
     });
 
-    it('Backstage passes: Quality drops to 0 if sellin < 0', () => {
+    it('Backstage passes: Quality drops to 0 if sellin =< 0', () => {
       var gildedRose = new Shop([ new Item("Backstage passes to a TAFKAL80ETC concert", 0, 10)]);
       var items = gildedRose.updateQuality();
       expect(items[0].quality).toEqual(0);
+    });
+
+    xit('Conjured Items: Quality decreases by two a day, if sellIn > 0', () => {
+      var gildedRose = new Shop([ new Item("Conjured Sword", 1, 10)]);
+      var items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(8);
+    });
+
+    xit('Conjured Items: Quality decreases by four a day, if sellIn =< 0', () => {
+      var gildedRose = new Shop([ new Item("Conjured Sword", 0, 10)]);
+      var items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(6);
     });
   });
 
