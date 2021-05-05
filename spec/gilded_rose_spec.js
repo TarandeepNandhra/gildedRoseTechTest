@@ -37,17 +37,15 @@ describe("Gilded Rose", function() {
     expect(items[0].quality).toEqual(50);
   });
 
-  // If Item is initialised over 50, stays above 50, which violates spec. 
-  xit('Quality of Item is above 50', () => {
-    var gildedRose = new Shop([ new Item("Aged Brie", 0, 60)]);
-    var items = gildedRose.updateQuality();
-    expect(items[0].quality).toEqual(50);
-  });
-
   // Currently increases by 1 if sellIn >=0, otherwise increases by 2 each day
   describe('Special Items', () => {
-    xit('Aged Brie increases in quality ', () => {
-      
+    it('Aged Brie increases in quality', () => {
+      var gildedRose = new Shop([ new Item("Aged Brie", 1, 15)]);
+      var items = gildedRose.updateQuality();
+      var newQuality = items[0].quality;
+      expect(items[0].quality > 15).toBe(true);
+      var items = gildedRose.updateQuality();
+      expect(items[0].quality > newQuality).toBe(true);
     });
 
     // Will assume that sulfuras starts correctly at 80
