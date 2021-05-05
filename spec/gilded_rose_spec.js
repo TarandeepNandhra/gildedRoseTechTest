@@ -50,12 +50,12 @@ describe("Gilded Rose", function() {
       
     });
 
-    // May change if value > 50 && items with quality > 50 get capped to 50.
-    it('Sulfuras, Hand of Ragnaros: never decreases in quality', () => {
-      for(var value = 1; value < 51; value++) {
-      var gildedRose = new Shop([ new Item("Sulfuras, Hand of Ragnaros", 0, value)]);
+    // Will assume that sulfuras starts correctly at 80
+    it('Sulfuras, Hand of Ragnaros: never decreases in quality, regardless of sellIn', () => {
+      for(var date = -1; date < 2; date++) {
+      var gildedRose = new Shop([ new Item("Sulfuras, Hand of Ragnaros", date, 80)]);
       var items = gildedRose.updateQuality();
-      expect(items[0].quality).toEqual(value);
+      expect(items[0].quality).toEqual(80);
       }
     });
 

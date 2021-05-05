@@ -10,25 +10,20 @@ class Item {
 class Shop {
   constructor(items=[]){
     this.items = items;
-    this.specialItems = [ 'Aged Brie', 'Backstage passes to a TAFKAL80ETC concert', 'Sulfuras, Hand of Ragnaros' ]
+    this.specialItems = ['Aged Brie', 'Backstage passes to a TAFKAL80ETC concert', 'Sulfuras, Hand of Ragnaros']
   }
   // Make a reduce item quality method -> only reduce if > 0 
   // Make an increase item quality method -> increase if < 50
+  // Rather than calling items array specialItems, (should be items be something like - items that don't degrade daily?)
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
       // If quality > 0 and is not a special item (use specialItems)
       if (this.specialItems.includes(this.items[i].name)) {
-        if (this.items[i].quality < 50 && this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-          this.items[i].quality = this.items[i].quality + 1;
-          if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
-            this.updateBackstagePass(i);
-          }
-        }
+        this.increaseQuality(i);
+        this.updateBackstagePass(i);
       } else {
         // All items not in specialItems array
-        if (this.items[i].quality > 0) {
-          this.items[i].quality = this.items[i].quality - 1;
-        }
+        this.decreaseQuality(i);
       }
       
       // All items apart from Sulfuras cards decrease sellIn by 1 per day
@@ -38,18 +33,17 @@ class Shop {
 
       if (this.items[i].sellIn < 0) {
         if (this.specialItems.includes(this.items[i].name)) {
+          // Aged Brie
           if (this.items[i].name == 'Aged Brie') {
-            if (this.items[i].quality < 50) {
-              this.items[i].quality = this.items[i].quality + 1;
-            }
+            this.increaseQuality(i);
           }
+          // Backstage passes
           if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
             this.items[i].quality = this.items[i].quality - this.items[i].quality;
           }
         } else {
-          if (this.items[i].quality > 0) {
-            this.items[i].quality = this.items[i].quality - 1;
-          }
+          // Normal items
+          this.decreaseQuality(i);
         }
       }
     }
@@ -58,14 +52,22 @@ class Shop {
 
   updateBackstagePass(i) {
     if (this.items[i].sellIn < 11) {
-      if (this.items[i].quality < 50) {
-        this.items[i].quality = this.items[i].quality + 1;
-      }
+      this.increaseQuality(i);
     }
     if (this.items[i].sellIn < 6) {
-      if (this.items[i].quality < 50) {
-        this.items[i].quality = this.items[i].quality + 1;
-      }
+      this.increaseQuality(i);
+    }
+  }
+
+  increaseQuality(i) {
+    if (this.items[i].quality < 50) {
+      this.items[i].quality = this.items[i].quality + 1;
+    }
+  }
+
+  decreaseQuality(i) {
+    if (this.items[i].quality > 0) {
+      this.items[i].quality = this.items[i].quality - 1;
     }
   }
 
