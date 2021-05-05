@@ -59,14 +59,14 @@ describe("Gilded Rose", function() {
       }
     });
 
-    it('Backstage passes: Quality increases by 2 when there are 10 days, but more than 0', () => {
+    it('Backstage passes: Quality increases by 2 when there are less than 11 days, but more than 0', () => {
       var gildedRose = new Shop([ new Item("Backstage passes to a TAFKAL80ETC concert", 10, 10)]);
       var items = gildedRose.updateQuality();
       expect(items[0].sellIn).toEqual(9);
       expect(items[0].quality).toEqual(12);
     });
 
-    it('Backstage passes: Quality increases by 3 when there are 5 days or less, but more than 0', () => {
+    it('Backstage passes: Quality increases by 3 when there are less than 6 days, but more than 0', () => {
       var gildedRose = new Shop([ new Item("Backstage passes to a TAFKAL80ETC concert", 5, 10)]);
       var items = gildedRose.updateQuality();
       expect(items[0].sellIn).toEqual(4);
