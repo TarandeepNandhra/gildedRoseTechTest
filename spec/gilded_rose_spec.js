@@ -37,7 +37,7 @@ describe("Gilded Rose", function() {
     expect(items[0].quality).toEqual(50);
   });
 
-  // Currently increases by 1 if sellIn >=0, otherwise increases by 2 each day
+  // Currently increases by 1 if sellIn > 0, otherwise increases by 2 each day
   describe('Special Items', () => {
     it('Aged Brie increases in quality', () => {
       var gildedRose = new Shop([ new Item("Aged Brie", 1, 15)]);

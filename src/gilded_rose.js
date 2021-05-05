@@ -11,8 +11,7 @@ class Shop {
   constructor(items=[]){
     this.items = items;
   }
-  // Make a reduce item quality method -> only reduce if > 0 
-  // Make an increase item quality method -> increase if < 50
+
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
       if (nonDegradableItems.includes(this.items[i].name)) {
@@ -24,7 +23,6 @@ class Shop {
         this.decreaseQuality(i);
       }
       
-      // All items apart from Sulfuras cards decrease sellIn by 1 per day
       if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
         this.items[i].sellIn -= 1;
       }
@@ -64,12 +62,14 @@ class Shop {
   }
 
   decreaseQuality(i) {
-    if (this.items[i].quality > 0 && this.items[i].name.toLowerCase().includes("conjured")) {
-      this.items[i].quality -= 1;
-    }
+    if (this.items[i].quality > 0) {
+      if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
+        this.items[i].quality -= 1;
+      }
 
-    if (this.items[i].quality > 0 && this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-      this.items[i].quality -= 1;
+      if (this.items[i].name.toLowerCase().includes("conjured")) {
+        this.items[i].quality -= 1;
+      }
     }
   }
 

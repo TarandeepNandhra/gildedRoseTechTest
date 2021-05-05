@@ -63,3 +63,5 @@ HINT: Test first FTW!
 - Decided it's better to write tests first, then refactor -> more confidence in refactoring is done correctly.
 - Made code DRY by extracting helper methods -> increase and decrease quality (with guard conds)
 - Extracted logic of Backstage Passes, substantial enough to require it's own function.
+- Found it very easy to implement logic for Conjured items as it only required one line in the decrease quality method.
+- Unsure if could refactor updateQuality further, could make a function for the logic if sellIn < 0, but it seemed over the top.
