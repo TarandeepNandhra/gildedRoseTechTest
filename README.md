@@ -61,3 +61,5 @@ HINT: Test first FTW!
 - First broke down the specs and manually tested using texttest_fixture.js with different days
 - Checked which specs are implemented and which are currently not working
 - Decided it's better to write tests first, then refactor -> more confidence in refactoring is done correctly.
+- Made code DRY by extracting helper methods -> increase and decrease quality (with guard conds)
+- Extracted logic of Backstage Passes, substantial enough to require it's own function.

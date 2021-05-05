@@ -79,13 +79,13 @@ describe("Gilded Rose", function() {
       expect(items[0].quality).toEqual(0);
     });
 
-    xit('Conjured Items: Quality decreases by two a day, if sellIn > 0', () => {
-      var gildedRose = new Shop([ new Item("Conjured Sword", 1, 10)]);
+    it('Conjured Items: Quality decreases by two a day, if sellIn > 0', () => {
+      var gildedRose = new Shop([ new Item("conjured Sword", 1, 10)]);
       var items = gildedRose.updateQuality();
       expect(items[0].quality).toEqual(8);
     });
 
-    xit('Conjured Items: Quality decreases by four a day, if sellIn =< 0', () => {
+    it('Conjured Items: Quality decreases by four a day, if sellIn =< 0', () => {
       var gildedRose = new Shop([ new Item("Conjured Sword", 0, 10)]);
       var items = gildedRose.updateQuality();
       expect(items[0].quality).toEqual(6);

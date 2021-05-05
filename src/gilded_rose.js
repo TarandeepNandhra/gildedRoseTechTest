@@ -16,7 +16,7 @@ class Shop {
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
       if (nonDegradableItems.includes(this.items[i].name)) {
-        // Currently both Aged and BP increase 
+        // Currently both Aged and BP increase
         this.increaseQuality(i);
         this.updateIfBackstagePass(i);
       } else {
@@ -59,13 +59,17 @@ class Shop {
   // Sulfuras handled in both quality methods
   increaseQuality(i) {
     if (this.items[i].quality < 50) {
-      this.items[i].quality = this.items[i].quality + 1;
+      this.items[i].quality += 1;
     }
   }
 
   decreaseQuality(i) {
+    if (this.items[i].quality > 0 && this.items[i].name.toLowerCase().includes("conjured")) {
+      this.items[i].quality -= 1;
+    }
+
     if (this.items[i].quality > 0 && this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-      this.items[i].quality = this.items[i].quality - 1;
+      this.items[i].quality -= 1;
     }
   }
 
